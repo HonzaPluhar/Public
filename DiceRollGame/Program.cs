@@ -17,7 +17,7 @@ public class Game
     public int RolledNumber;
     public int CurrentAttempt = 0;
     public bool Playing = true;
-    public int MaximumAttempts = 3;
+    public int MaximumAttempts = 6;
 
 
 
@@ -25,47 +25,39 @@ public class Game
     Random rnd = new Random();
     public void RollingNumber()
     {
-
         RolledNumber = rnd.Next(1, 7);   // creates a number between 1 and 6
     }
 
 
     public void EnteredNumber()
     {
-        Console.WriteLine("Quess the number");
-        int userinput = int.Parse(Console.ReadLine());
-        CheckUserInput(userinput);
-
-        if (userinput > 0 && userinput < 7)
+        Console.WriteLine("Guess the number");
+        string userInputString = Console.ReadLine();
+        int userInput;
+        if (int.TryParse(userInputString, out userInput) && userInput > 0 && userInput < 7)
         {
+            CheckUserInput(userInput);
             CurrentAttempt++;
             NumberOfAttemptsCheck();
         }
-
-
+        else
+        {
+            Console.WriteLine("Incorrect number! Guess the number between 1 and 6!");
+        }
     }
 
     public void CheckUserInput(int userinput)
     {
-        if (userinput > 0 && userinput < 7)
+        if (userinput == RolledNumber)
         {
-
-
-            if (userinput == RolledNumber)
-            {
-                Console.WriteLine("Congratulatoins! You have won!");
-                Console.WriteLine("Thank you for using this application. For exit press any key.");
-                Playing = false;
-                Console.ReadKey();
-            }
-            else
-            {
-                Console.WriteLine("Sorry that was not correct!");
-            }
+            Console.WriteLine("Congratulations! You have won!");
+            Console.WriteLine("Thank you for using this application. For exit press any key.");
+            Playing = false;
+            Console.ReadKey();
         }
         else
         {
-            Console.WriteLine("Incorrect number! Quess the number between 1 and 6!");
+            Console.WriteLine("Sorry that was not correct!");
         }
     }
 
@@ -73,14 +65,11 @@ public class Game
     {
         if (CurrentAttempt >= MaximumAttempts)
         {
-
-
-            Playing = false;
             Console.WriteLine("You loose! :-(");
+            Console.WriteLine("Thank you for using this application. For exit press any key.");
+            Playing = false;
             Console.ReadKey();
         }
-
-
     }
 
     public void PlayGame()
