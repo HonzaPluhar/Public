@@ -154,10 +154,12 @@ public class Library
     //list of books
     public void ListAvailableBooks()
     {
+        Console.WriteLine("List:");
         foreach (Book book in books)
         {
 
             Console.WriteLine($"Název: {book.Title}, Autor: {book.Author}, Rok vydání: {book.PublicationYear}");
         }
+        Console.WriteLine("");
     }
 }
