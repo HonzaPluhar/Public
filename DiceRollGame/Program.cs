@@ -54,7 +54,9 @@ public class Game
             if (userinput == RolledNumber)
             {
                 Console.WriteLine("Congratulatoins! You have won!");
+                Console.WriteLine("Thank you for using this application. For exit press any key.");
                 Playing = false;
+                Console.ReadKey();
             }
             else
             {
@@ -71,8 +73,11 @@ public class Game
     {
         if (CurrentAttempt >= MaximumAttempts)
         {
-            Console.WriteLine("You loose the game! :-(");
+
+
             Playing = false;
+            Console.WriteLine("You loose! :-(");
+            Console.ReadKey();
         }
 
 
