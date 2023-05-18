@@ -7,9 +7,9 @@ public class Program
         Library library = new Library();
 
         //vytvoření několika knih
-        Book book1 = new Book("Honzovi lapálie", "Jan Pluhař", 1994);
+        Book book1 = new Book("Honza ze světa bramborových lidí", "Jan Pluhař", 1994);
         Book book2 = new Book("Anity sekvence", "Anita Prošková", 1993);
-        Book book3 = new Book("Natálky svět bramborových lidí", "Natálie Pluhařová", 2014);
+        Book book3 = new Book("Život pod hladinou", "Natálie Pluhařová", 2014);
 
         //přidání knih do knihovny
         library.AddBook(book1);
@@ -22,17 +22,17 @@ public class Program
 
 
         //Vypůjčení knihy 
-        library.BorrowBook("Honzovi lapálie");
+        library.BorrowBook("Honza ze světa bramborových lidí");
 
 
         //zkouška vypůjčit ji znovu
-        library.BorrowBook("Honzovi lapálie");
+        library.BorrowBook("Honza ze světa bramborových lidí");
 
         //vypsání všech knih v knihovně
         library.ListAvailableBooks();
 
         //vrácení knihy do knihovny
-        library.ReturnBook("Honzovi lapálie");
+        library.ReturnBook("Honza ze světa bramborových lidí");
 
         //vypsání všech knih v knihovně
         library.ListAvailableBooks();
