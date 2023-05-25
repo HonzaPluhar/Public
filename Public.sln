@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiceRollGame", "DiceRollGam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdopceZvirat", "AdopceZvirat\AdopceZvirat.csproj", "{9204BFB7-7CA8-40FE-BC61-EE26E3CEEA89}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkovisteProjekt", "ParkovisteProjekt\ParkovisteProjekt.csproj", "{67880149-A1D0-4257-B301-EE8441829ECE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{9204BFB7-7CA8-40FE-BC61-EE26E3CEEA89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9204BFB7-7CA8-40FE-BC61-EE26E3CEEA89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9204BFB7-7CA8-40FE-BC61-EE26E3CEEA89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67880149-A1D0-4257-B301-EE8441829ECE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67880149-A1D0-4257-B301-EE8441829ECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67880149-A1D0-4257-B301-EE8441829ECE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67880149-A1D0-4257-B301-EE8441829ECE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
