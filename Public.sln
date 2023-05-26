@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiceRollGame", "DiceRollGam
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdopceZvirat", "AdopceZvirat\AdopceZvirat.csproj", "{9204BFB7-7CA8-40FE-BC61-EE26E3CEEA89}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkovisteProjekt", "ParkovisteProjekt\ParkovisteProjekt.csproj", "{67880149-A1D0-4257-B301-EE8441829ECE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CestovniKancelarProjekt", "CestovniKancelarProjekt\CestovniKancelarProjekt.csproj", "{A0AF8084-7624-46E7-8EF7-A9A5AFC5FE70}"
 EndProject
 Global
@@ -31,10 +29,6 @@ Global
 		{9204BFB7-7CA8-40FE-BC61-EE26E3CEEA89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9204BFB7-7CA8-40FE-BC61-EE26E3CEEA89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9204BFB7-7CA8-40FE-BC61-EE26E3CEEA89}.Release|Any CPU.Build.0 = Release|Any CPU
-		{67880149-A1D0-4257-B301-EE8441829ECE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{67880149-A1D0-4257-B301-EE8441829ECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{67880149-A1D0-4257-B301-EE8441829ECE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{67880149-A1D0-4257-B301-EE8441829ECE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A0AF8084-7624-46E7-8EF7-A9A5AFC5FE70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A0AF8084-7624-46E7-8EF7-A9A5AFC5FE70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0AF8084-7624-46E7-8EF7-A9A5AFC5FE70}.Release|Any CPU.ActiveCfg = Release|Any CPU
