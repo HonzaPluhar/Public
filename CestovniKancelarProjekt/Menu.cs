@@ -1,22 +1,28 @@
-﻿using System;
+﻿using TravelAgencyProject;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 
-namespace CestovniKancelarProjekt
+namespace TravelAgencyProject
 {
     public class Menu
     {
 
-        CestovniKancelar cestovniKancelar = new CestovniKancelar();
+        TravelAgency travelAgency = new TravelAgency();
 
-        public void HlavniMenu()
+        public Menu()
         {
-            bool pokracovat = true;
+            travelAgency = new TravelAgency();
+            travelAgency.LoadDataFromFile("data.txt");
+        }
+        public void MainMenu()
+        {
+            bool running = true;
 
-            while (pokracovat)
+            while (running)
             {
                 Console.WriteLine("Cestovní kancelář C# projekt ");
                 Console.WriteLine("Jan Pluhar - github.com/HonzaPluhar ");
@@ -28,29 +34,30 @@ namespace CestovniKancelarProjekt
                 Console.WriteLine("0 - Ukončit program");
 
 
-                string volba = Console.ReadLine();
+                string selection = Console.ReadLine();
 
-                switch (volba)
+                switch (selection)
                 {
                     case "1":
-                        ZajezdAdd();
+                        TripAdd();
                         break;
                     case "2":
-                        ZajezdRemove();
+                        TripRemove();
                         break;
                     case "3":
-                        ZajezdAll();
+                        ShowAll();
                         break;
                     case "4":
-                        ZajezdSearch();
+                        TripSearch();
                         break;
                     case "0":
-                        pokracovat = false;
+                        travelAgency.SaveDataToFile("data.txt");
+                        running = false;
                         break;
 
                     default:
                         Console.WriteLine("Neexistující příkaz.");
-                        PokracujKlavesou();
+                        ContinueWithKey();
                         break;
 
                 }
@@ -58,95 +65,132 @@ namespace CestovniKancelarProjekt
             }
         }
 
-        public void ZajezdAdd()
+        public void TripAdd()
         {
             Console.Clear();
             Console.Write("Zadejte název zájezdu: ");
-            string nazev = Console.ReadLine();
+            string name = Console.ReadLine();
 
 
             Console.Write("Zadejte destinaci: ");
-            string destinace = Console.ReadLine();
+            string destination = Console.ReadLine();
 
 
-            Console.Write("Datum odjezdu: ");
-            string datumOdjezdu = Console.ReadLine();
 
 
-            Console.Write("Datum příjezdu: ");
-            string datumPrijezdu = Console.ReadLine();
+            DateTime departureDate;
+            while (true)
+            {
+                Console.Write("Datum odjezdu (dd.MM.yyyy): ");
+                string departureDateString = Console.ReadLine();
+                if (DateTime.TryParse(departureDateString, out departureDate))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Neplatný formát data, zadejte prosím znovu.");
+                }
+            }
 
-            string idZajezdu = Guid.NewGuid().ToString().ToLower().Substring(0, 5);
 
-            Zajezd zajezd = new Zajezd(nazev, destinace, datumOdjezdu, datumPrijezdu, idZajezdu);
-            cestovniKancelar.PridatZajezd(zajezd);
 
-            Console.WriteLine($"Zájezd ID {zajezd.IdZajezdu} s názvem {zajezd.NazevZajezdu} byl úspěšně přidán do seznamu zájezdů.");
-            PokracujKlavesou();
+
+
+            DateTime arrivalDate;
+            while (true)
+            {
+                Console.Write("Datum příjezdu (dd.MM.yyyy): ");
+                string arrivalDateString = Console.ReadLine();
+                if (DateTime.TryParse(arrivalDateString, out arrivalDate))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Neplatný formát data, zadejte prosím znovu.");
+                }
+            }
+
+
+            string tripId = Guid.NewGuid().ToString().ToLower().Substring(0, 4);
+
+            Trip trip = new Trip(name, destination, departureDate, arrivalDate, tripId);
+            travelAgency.AddTrip(trip);
+
+            Console.WriteLine($"Zájezd ID {trip.TripId} s názvem {trip.TripName} byl úspěšně přidán do seznamu zájezdů.");
+            ContinueWithKey();
 
 
 
         }
 
-        public void ZajezdRemove()
+        public void TripRemove()
         {
             Console.Clear();
+            travelAgency.TripsYouCanDelete();
+            Console.WriteLine();
             Console.Write("Zadejte ID zájezdu který chcete odstranit: ");
-            string idZajezdu = Console.ReadLine().ToLower();
 
-            Zajezd zajezd = cestovniKancelar.seznamZajezdu.Find(v => v.IdZajezdu == idZajezdu);
+            string tripId = Console.ReadLine().ToLower();
 
-            if (zajezd != null)
+
+
+            Trip trip = travelAgency.tripList.Find(v => v.TripId == tripId);
+
+            if (trip != null)
             {
-                cestovniKancelar.OdebratZajezd(zajezd);
-                PokracujKlavesou();
+                travelAgency.RemoveTrip(trip);
+                ContinueWithKey();
             }
             else
             {
                 Console.WriteLine("Zájezd s tímto ID nebyl nalezen.");
-                PokracujKlavesou();
+                ContinueWithKey();
             }
 
         }
 
-        public void ZajezdAll()
+        public void ShowAll()
         {
             Console.Clear();
-            cestovniKancelar.Vypis();
-            PokracujKlavesou();
+            travelAgency.ShowTrips();
+            ContinueWithKey();
         }
 
-        public void ZajezdSearch()
+        public void TripSearch()
         {
             Console.Clear();
-            Console.Write("Zadejte ID zájezdu pro vyhledá: ");
-            string idZajezdu = Console.ReadLine().ToLower();
+            Console.Write("Zadejte ID zájezdu pro vyhledání: ");
+            string tripId = Console.ReadLine().ToLower();
 
-            Zajezd zajezd = cestovniKancelar.NajdiZajezdPodleId(idZajezdu);
+            Trip trip = travelAgency.FindTripWithId(tripId);
 
             {
-                if (zajezd != null)
+                if (trip != null)
                 {
                     Console.Clear();
-                    Console.WriteLine($"Zájezd ID {zajezd.IdZajezdu} byl nalezen.");
+                    Console.WriteLine($"Zájezd ID {trip.TripId} byl nalezen.");
                     Console.WriteLine();
                     Console.WriteLine("Informace o zájezdu:");
-                    Console.WriteLine($"Název zájezdu: {zajezd.NazevZajezdu}");
-                    Console.WriteLine($"Destinace: {zajezd.Destinace}");
-                    Console.WriteLine($"Od / Do: {zajezd.DatumOdjezdu} / {zajezd.DatumPrijezdu}");
-                    PokracujKlavesou();
+                    Console.WriteLine($"Název zájezdu: {trip.TripName}");
+                    Console.WriteLine($"Destinace: {trip.Destination}");
+                    Console.WriteLine($"Od / Do: {trip.DepartureDate} / {trip.ArrivalDate}");
+                    ContinueWithKey();
                 }
                 else
                 {
                     Console.WriteLine("Zájezd s tímto ID nebyl nalezen.");
-                    PokracujKlavesou();
+                    ContinueWithKey();
                 }
             }
 
         }
 
 
-        public void PokracujKlavesou()
+
+
+        public void ContinueWithKey()
         {
             Console.WriteLine();
             Console.WriteLine("Pro pokračování stiskněte libovolnou klávesu.");

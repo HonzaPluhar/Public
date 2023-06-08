@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiceRollGame", "DiceRollGam
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdopceZvirat", "AdopceZvirat\AdopceZvirat.csproj", "{9204BFB7-7CA8-40FE-BC61-EE26E3CEEA89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CestovniKancelarProjekt", "CestovniKancelarProjekt\CestovniKancelarProjekt.csproj", "{A0AF8084-7624-46E7-8EF7-A9A5AFC5FE70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAgencyProject", "CestovniKancelarProjekt\TravelAgencyProject.csproj", "{A0AF8084-7624-46E7-8EF7-A9A5AFC5FE70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

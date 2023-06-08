@@ -1,4 +1,4 @@
-﻿using CestovniKancelarProjekt;
+﻿using TravelAgencyProject;
 using System.Reflection.Metadata.Ecma335;
 
 namespace Program
@@ -11,7 +11,7 @@ namespace Program
         {
             Menu menu = new Menu();
 
-            menu.HlavniMenu();
+            menu.MainMenu();
 
 
 
